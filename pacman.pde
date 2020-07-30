@@ -133,6 +133,7 @@ void keyTyped() {
   if(keyCode == UP) {
   
   System.out.println(keyCode);
+  // Hello there
 
   } 
  }  
