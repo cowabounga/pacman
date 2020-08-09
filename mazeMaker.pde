@@ -1,55 +1,63 @@
-class mazeMaker{
-float cellwidth = width / 28;
-  float cellheight = height / 31;
+class mazeMaker {
 
-void drawMaze() {
+  
 
-// FOR THE MAZE
+  // Declare constants
+  final float cellwidth = width / 28;
+  final float cellheight = height / 31;
+  int xmarker = 0;
+  int ymarker = 0;
+  int candysize = 7;
+  int supercandy = 20;
+  int padding = 5;
+ 
+    int tilesx = myArray[0].length;
+  int tilesy = myArray.length;
+  final color zero = color(25, 25, 166);
+  final color one = color(255, 255, 255);
+  final color two = color(0);
+  final color three = color(0, 255, 255);
 
-int num;
-  for (int i = 0; i < myArray.length; i++) {
-    for (int j = 0; j < myArray[i].length; j++) {
-      num = myArray[i][j];   
+  void drawMaze() {
 
+    // Draw the maze
 
-      if (num == 0) {
-        // Blu
-        fill(0, 0, 240);
-        rect(xmarker, ymarker, cellwidth, cellheight);
-      } else if (num == 1) {
-        // white 
-        fill(255, 255, 255);
-        ellipse(xmarker + cellwidth/2, ymarker+ cellheight/2, candysize, candysize);
-      } else if (num == 2) {
-        // greay
-        // fill(50, 50, 50);
-      } else if (num == 3) {
-        // lightblue
-        fill(0, 255, 255);
-        ellipse(xmarker + cellwidth/2, ymarker + cellheight/2, supercandy, supercandy);
-      } else {
-        // Do smth - in red
-        fill(240, 0, 0);
-      } 
-
-      if (xmarker >= 840 - cellwidth ) {
-        ymarker += cellheight;
-        xmarker = 0;
-      } else if (ymarker > 930 - cellheight) {
-        // We are done
-        xmarker = 0;
-        ymarker = 0;
-        // Get the f*ck outta here
-        i = myArray.length-1;
-        j = myArray[i].length-1;
-      } else {
-        xmarker += cellwidth;
+    for (int i = 0; i < tilesy; i ++) {
+      for (int j = 0; j < tilesx; j++) {
+        if (!(myArray[i][j] == 1)) {
+          noStroke();
+          fill(getColor(i, j));
+          rect(j*cellwidth, i*cellheight + 50, cellwidth, cellheight);
+          //println(cell_width + " " + cell_height);
+        } else {
+          noStroke();
+          fill(getColor(i, j));
+          ellipse(j*cellwidth + cellwidth/2, i*cellwidth + cellheight/2 + 50, candysize, candysize);
+        }
       }
     }
   }
 
 
+  // Unaccessible from outside this class
+  private color getColor(int i, int j) {
+    color c = color(255, 0, 0);
 
-}
+    // Retrieve tile color according to array
 
-}
+    switch(myArray[i][j]) {
+    case 0:
+      return zero;
+    case 1:
+      return one;
+    case 2:
+      return two;
+    case 3:
+      return three;
+  }
+    return c;
+  }
+
+
+
+  }
