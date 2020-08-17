@@ -13,7 +13,7 @@ class yellowGuy {
   float j;
   PFont Birds;
   int Counter =+ 0;     // Keeps track of the number of points eaten
-  float incremento = 0.2;
+  double incremento = 0.2;
   String sentido = "horizontal";
   PImage Lives;
 
@@ -29,9 +29,10 @@ class yellowGuy {
     ellipse(i, j, 30, 30);
 
     if (keyPressed) {
-System.out.println(h);
-System.out.println(v);
-System.out.println(keyPressed);
+//System.out.println(h);
+//System.out.println(v);
+//System.out.println(keyPressed);
+System.out.println(incremento);
 
 if(h != cellwidth/2){
 keyPressed = false;
@@ -40,14 +41,6 @@ keyPressed = false;
 
 if(v != cellheight/2){
 keyPressed = false;
-
-
-if(keyPressed == false){
-
-
-
-if(keyPressed == false){
-
 
 
       if ((myArray[round(v)][round(h)] == 1)){
@@ -60,9 +53,9 @@ if(keyPressed == false){
 
       if ((keyCode == UP) && (v>(0))&&(sentido == "vertical" || (h - floor(h))< 0.05)) {
         
-        if ((myArray[floor(v-incremento)][floor(h)] != 0)) {
+        if ((myArray[floor(v-(int)incremento)][floor(h)] != 0)) {
           
-            v -= incremento;
+            v -= (int)incremento;
             sentido = "vertical";
           
            
@@ -74,7 +67,7 @@ if(keyPressed == false){
         }
         if ((myArray[floor(v)][floor(h+1)] != 0)) {
           
-            h += incremento;
+            h += (int)incremento;
           sentido = "horizontal";
         
          
@@ -85,9 +78,9 @@ if(keyPressed == false){
           h = 28;
         }
 
-        if ((myArray[floor(v)][floor(h-incremento)] != 0)) {
+        if ((myArray[floor(v)][floor(h-(int)incremento)] != 0)) {
           
-            h -= incremento;
+            h -= (int)incremento;
           sentido = "horizontal";
         }
           
@@ -96,14 +89,14 @@ if(keyPressed == false){
        else if ((keyCode == DOWN)&&(v<(myArray.length))&&(sentido == "vertical" || (h - floor(h))< 0.05)) {
         if ((myArray[floor(v+1)][floor(h)] != 0)) {
           
-            v += incremento;
+            v += (int)incremento;
           sentido = "vertical";
         
           
         }
       }
-     }
-    }
+     
+    
    }
   }
  }
